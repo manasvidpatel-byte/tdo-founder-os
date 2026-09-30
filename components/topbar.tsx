@@ -1,0 +1,1 @@
+"use client";import{GlobalSearch}from"./search";export function Topbar(){return <div className="sticky top-0 z-10 border-b border-[#252b33] bg-[#0b0d10]/95 px-4 py-3 backdrop-blur md:hidden"><GlobalSearch/></div>}
