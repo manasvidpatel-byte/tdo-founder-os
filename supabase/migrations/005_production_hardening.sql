@@ -1,3 +1,4 @@
+alter table profiles add column if not exists day_type_overrides jsonb not null default '{}'::jsonb;
 alter table tasks add column if not exists goal_id uuid references goals(id) on delete set null;
 alter table tasks add column if not exists import_key text;
 alter table goals add column if not exists progress numeric not null default 0;
