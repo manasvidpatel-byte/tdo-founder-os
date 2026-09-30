@@ -19,7 +19,7 @@ export function priority(t: Task, today = new Date()) {
 }
 export function availableCapacity(type:DayType,profile:PlanningProfile,calendarMinutes=0,healthPenalty=0){
   const base=capacityMinutes(type);
-  const configured=profile.workStart&&profile.workEnd?Math.max(0,Number(profile.workEnd.slice(0,2))-Number(profile.workStart.slice(0,2)))*60:base;
+  const configured=(profile.workStart|| (profile as any).work_start)&&(profile.workEnd|| (profile as any).work_end)?Math.max(0,Number((profile.workEnd||(profile as any).work_end)!.slice(0,2))-Number((profile.workStart||(profile as any).work_start)!.slice(0,2)))*60:base;
   return Math.max(60,Math.min(base,configured)-calendarMinutes-healthPenalty);
 }
 export function dailyScore(input:{completedTasks:number;plannedTasks:number;highImpactCompleted:number;highImpactPlanned:number;revenueActions:number;revenueTargetActions:number;health?:any;learningMinutes:number;learningTargetMinutes:number;lifeActions:number}){
