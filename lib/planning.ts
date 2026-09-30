@@ -1,0 +1,5 @@
+import {DayType,Task} from "./types";
+export function dayType(date=new Date()):DayType{const d=date.getDay();if(d>=1&&d<=3)return"maintenance";if(d===4)return"execution";if(d===5)return"sales";if(d===6)return"life";return"review"}
+export function priority(t:Task,today=new Date()){let s=0;s+=t.revenueImpact*4+t.strategicImpact*3;s+=t.urgent?18:0;if(t.due){const days=(new Date(t.due).getTime()-today.getTime())/86400000;if(days<=0)s+=30;else if(days<=1)s+=24;else if(days<=3)s+=14}return s-Math.min(t.estimatedMinutes/30,12)}
+export function capacityMinutes(type:DayType){return type==="maintenance"?120:type==="execution"?420:type==="sales"?360:type==="life"?240:300}
+export function mission(type:DayType){return({maintenance:"Protect energy, keep TDO moving, and finish only what matters.",execution:"Create meaningful TDO progress through focused execution.",sales:"Create revenue momentum through focused sales and follow-up.",life:"Build the business without forgetting to build the life around it.",review:"Close the loop: review the week, learn, and prepare the next one."})[type]}

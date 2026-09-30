@@ -1,0 +1,2 @@
+export type DayType="maintenance"|"execution"|"sales"|"life"|"review";
+export type Task={id:string;title:string;category:string;status:"todo"|"done";priority:number;due:string|null;estimatedMinutes:number;revenueImpact:number;strategicImpact:number;urgent:boolean};

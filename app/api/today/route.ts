@@ -1,0 +1,2 @@
+import {NextResponse} from "next/server";import {dayType,capacityMinutes,mission} from "@/lib/planning";
+export async function GET(){const now=new Date(),type=dayType(now);return NextResponse.json({date:now.toISOString().slice(0,10),timezone:"Europe/London",dayType:type,capacityMinutes:capacityMinutes(type),mission:mission(type),limits:{must:3,should:3,optional:3}})}
